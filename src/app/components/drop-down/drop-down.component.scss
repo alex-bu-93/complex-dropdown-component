@@ -1,0 +1,31 @@
+.container {
+  width: 960px;
+  margin: 0 auto;
+}
+
+.search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  background: #F2F2F2;
+  border-radius: 10px;
+
+  &-input {
+    width: 90%;
+    padding-left: 5px;
+    border: 1px solid #E0E0E0;
+    height: 30px;
+    border-radius: 3px;
+
+    &:hover {
+      border: 1px solid #E0E0FA;
+    }
+
+    &:focus {
+      transition: all .3s;
+      outline: none;
+      border: 1px solid #6C11C9;
+    }
+  }
+}

@@ -1,0 +1,27 @@
+<ng-container *ngIf="pager?.totalItems > 0">
+  <div class="result">
+    <span>Отображение элементов с</span>
+    <div class="result-number">{{(pager.currentPage - 1) * pager.pageSize + 1}}</div>
+    <span>по</span>
+    <div
+      class="result-number">{{(pager.currentPage * pager.pageSize) < pager.totalItems ? pager.currentPage * pager.pageSize : pager.totalItems}}</div>
+    <span>из</span>
+    <div class="result-number">{{pager.totalItems}}</div>
+  </div>
+
+  <nav class="pagination">
+    <ng-container *ngIf="pager.pages && pager.pages.length">
+      <ul class="pagination-list">
+        <li (click)="fetchData(1)" class="pagination-item pagination-back"><span> &#171; </span></li>
+        <li (click)="fetchData(pager.currentPage - 1)" class="pagination-item pagination-prev"><span> &#8249; </span>
+        </li>
+        <ng-container *ngFor="let page of pager.pages">
+          <li (click)="fetchData(page)" class="pagination-item"><span>{{page}}</span></li>
+        </ng-container>
+        <li (click)="fetchData(pager.currentPage + 1)" class="pagination-item pagination-next"><span> &#8250; </span>
+        </li>
+        <li (click)="fetchData(pager.totalPages)" class="pagination-item pagination-forward"><span> &#187; </span></li>
+      </ul>
+    </ng-container>
+  </nav>
+</ng-container>

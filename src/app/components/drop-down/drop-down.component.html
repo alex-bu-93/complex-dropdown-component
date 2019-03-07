@@ -1,0 +1,45 @@
+<div class="container">
+
+
+  <!-- ------------------------- Строка ввода ------------------------- -->
+  <input
+    [(ngModel)]="search"
+    (input)="fetchData(1, $event['target']['value'])"
+    type="text"
+    class="search-input"
+    [placeholder]="placeholder"/>
+  <!-- ------------------------- Строка ввода ------------------------- -->
+  <ng-container *ngIf="chosenItemsList.length > 0">
+    <button (click)="deleteAllChips()">X</button>
+    <ng-container *ngFor="let item of chosenItemsList">
+      <p>
+        {{item[getProperty(chosenItemsList, chosenItemsProp)].toString().substring(0, chipMaxLength)}}
+        {{item[getProperty(chosenItemsList, chosenItemsProp)].toString().length > chipMaxLength && chipsEndsDots ? '...' : ''}}
+        <button (click)="deleteChip(item)">Х</button>
+      </p>
+    </ng-container>
+  </ng-container>
+
+
+  <!-- ------------------------- Таблица выпадающего списка ----------- -->
+  <app-content
+    [displayProps]="displayProps"
+    [items]="data.items"
+    [chips]="chosenItemsList"
+    [idField]="idField"
+    [deletedChips]="deletedChips"
+    (chosenItemsOutput)="chosenItemsOutputHandler($event)">
+  </app-content>
+  <!-- ------------------------- Таблица выпадающего списка ----------- -->
+
+
+  <!-- ------------------------- Пагинация ---------------------------- -->
+  <app-pagination
+    [pager]="pager"
+    (pageToNavigate)="fetchData($event, search)">
+  </app-pagination>
+  <!-- ------------------------- Пагинация ---------------------------- -->
+
+
+</div>
+

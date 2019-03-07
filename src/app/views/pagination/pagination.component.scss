@@ -1,0 +1,60 @@
+// Текст над пагинацией
+.result {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  &-number {
+    color: #6C11C9;
+    font-weight: bold;
+    font-size: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  span {
+    color: #646464;
+    line-height: 20px;
+    font-size: 15px;
+  }
+}
+
+// Пагинация
+.pagination {
+  margin-top: 10px;
+
+  &-list {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    font-family: Tahoma, Arial, sans-serif;
+  }
+
+  &-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    margin-right: 3px;
+    border-radius: 50%;
+    border: 1px solid transparent;
+    cursor: pointer;
+    &:hover {
+      transition: all 0.3s;
+      color: #FF48A5;
+      border-radius: 50%;
+      border: 1px solid #FF48A5;
+    }
+  }
+
+  // класс для активного пункта пагинации
+  .active {
+    color: #FF48A5;
+    border-radius: 50%;
+    border: 1px solid #FF48A5;
+  }
+}

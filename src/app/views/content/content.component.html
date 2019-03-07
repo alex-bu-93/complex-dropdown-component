@@ -1,0 +1,38 @@
+<ng-container *ngIf="items.length">
+  <ng-container *ngIf="getDisplayPropsList(); then dataTable; else messageDisplay"></ng-container>
+</ng-container>
+
+
+<!-- ---------- Сообщение, если таблица наденных данных не отоброжена ---------- -->
+<ng-template #messageDisplay>
+  {{warningMessage}}
+</ng-template>
+<!-- ---------- Сообщение, если таблица наденных данных не отоброжена ---------- -->
+
+<!-- ---------- Таблица найденных данных ---------- -->
+<ng-template #dataTable>
+  <table>
+    <tr>
+      <ng-container *ngIf="getDropDownItems(items).length; then tableHeaders; else noHeadersMessage"></ng-container>
+    </tr>
+    <ng-container *ngFor="let item of getDropDownItems(items)">
+      <tr (click)="onRowClick(item)"
+          class="cursor-pointer">
+        <ng-container *ngFor="let columnProperty of getDisplayPropsList()">
+          <td>{{item[columnProperty]}}</td>
+        </ng-container>
+      </tr>
+    </ng-container>
+  </table>
+</ng-template>
+
+<ng-template #tableHeaders>
+  <ng-container *ngFor="let columnName of getDisplayPropsList()">
+    <th>{{columnName.charAt(0).toUpperCase() + columnName.slice(1)}}</th>
+  </ng-container>
+</ng-template>
+<ng-template #noHeadersMessage>
+  Все данные на этой странице выбраны
+</ng-template>
+<!-- ---------- Таблица найденных данных ---------- -->
+
